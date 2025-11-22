@@ -1,36 +1,36 @@
 services:
   DUMB:
     container_name: DUMB
-    image: iampuid0/dumb:dev                                       ## Optionally, specify a specific version of DUMB w/ image: iampuid0/dumb:2.0.0
-    stop_grace_period: 30s                                            ## Adjust as need to allow for graceful shutdown of the container
-    shm_size: 128mb                                                   ## Increased for PostgreSQL
-    stdin_open: true                                                  ## docker run -i
-    tty: true                                                         ## docker run -t
+    image: iampuid0/dumb:dev
+    stop_grace_period: 30s
+    shm_size: 128mb
+    stdin_open: true
+    tty: true
     volumes:
-      - /home/bosgame-server/docker/DUMB/config:/config                     ## Location of configuration files.
-      - /home/bosgame-server/docker/DUMB/log:/log                           ## Location for logs
-      - /home/bosgame-server/docker/DUMB/data:/data                         ## Location for all service data
-      - /home/bosgame-server/docker/DUMB/mnt/debrid:rshared          ## Location for all symlinks and rclone mounts - change to /mnt/debrid:rshared if using decypharr 
+      - /home/bosgame-server/docker/DUMB/config:/config
+      - /home/bosgame-server/docker/DUMB/log:/log
+      - /home/bosgame-server/docker/DUMB/data:/data
+      - /home/bosgame-server/docker/DUMB/mnt/debrid:rshared
     environment:
       - TZ=America/Los_Angeles
       - PUID=1000
       - PGID=1000
-    # network_mode: container:gluetun                                ## Example to attach to gluetun vpn container if realdebrid blocks IP address
+    # network_mode: container:gluetun 
     ports:
-      - "3005:3005"                                                  ## DUMB Frontend
-      - "3000:3000"                                                  ## Riven Frontend
-      - "5050:5050"                                                  ## pgAdmin 4 Frontend
-      - "5000:5000"                                                  ## CLI Debrid Frontend      
-      - "8282:8282"                                                  ## Decypharr Frontend         
-      - "32400:32400"                                                ## Plex Media Server      
-      - "8096:8096"                                                  ## Emby 
-      - "9696:9696"                                                  ## Prowlarr
-      - "7878:7878"                                                  ## Radarr
-      - "8989:8989"                                                  ## Sonarr
-      - "6767:6767"                                                  ## Bazarr
-   devices:
+      - "3005:3005"
+      - "3000:3000"
+      - "5050:5050"
+      - "5000:5000"
+      - "8282:8282"
+      - "32400:32400"
+      - "8096:8096"
+      - "9696:9696"
+      - "7878:7878"
+      - "8989:8989"
+      - "6767:6767"
+    devices:
       - /dev/fuse:/dev/fuse:rwm
-      - /dev/dri:/dev/dri       
+      - /dev/dri:/dev/dri
     cap_add:
       - SYS_ADMIN
     security_opt:
