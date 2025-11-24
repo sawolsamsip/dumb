@@ -27,7 +27,7 @@ services:
       - "32400:32400" #Plex
       - "8096:8096" #Jellyfin
       - "6767:6767" #
-      - "8888:8888" #   
+      - "8888:8888" #Phalanx DB?   
       - "9696:9696" #Prowlarr
       - "8989:8989" #Sonarr-shows
       - "8990:8990" #Sonarr-shows-korean-tv (x)
