@@ -50,9 +50,7 @@ services:
       - "8686:8686" #Liarr-Pop
       - "8687:8687" #Liarr-Kpop
 
-      - "6969:6969" #whisparr (?) adult need to delete
       - "8182:8182" #Zilean
-
     devices:
       - /dev/fuse:/dev/fuse:rwm
       - /dev/dri:/dev/dri
