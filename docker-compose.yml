@@ -10,7 +10,6 @@ services:
       - /home/bosgame-server/docker/DUMB/config:/config
       - /home/bosgame-server/docker/DUMB/log:/log
       - /home/bosgame-server/docker/DUMB/data:/data
- #     - /home/bosgame-server/docker/DUMB/mnt/debrid:rshared
       - /home/bosgame-server/docker/DUMB/mnt/debrid:/mnt/debrid:rshared
     environment:
       - TZ=America/Los_Angeles
