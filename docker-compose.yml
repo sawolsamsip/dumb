@@ -26,7 +26,7 @@ services:
       - "5001:5001" #cli_battery
       - "5050:5050" #pgAdmin 4
       - "5432:5432" #postgres
-      - "8888:8888" #Phalanx DB  
+      - "8888:8888" #Phalanx DB  (x)
   
       - "8282:8282" #Decypharr
       - "8096:8096" #Jellyfin
@@ -42,11 +42,11 @@ services:
       - "9696:9696" #Prowlarr
       
       - "8989:8989" #Sonarr-shows
-      - "8990:8990" #Sonarr-shows-korean-tvshows
-      - "8991:8991" #Sonarr-anime 
-      - "8992:8992" #Sonarr-shows-4k
-      - "8993:8993" #Sonarr-shows-korean-drama
-
+      - "8990:8990" #Sonarr-shows-korean-drama
+      - "8991:8991" #Sonarr-shows-korean-tv
+      - "8992:8992" #Sonarr-anime 
+      - "8993:8993" #Sonarr-shows-4k
+      
       - "8686:8686" #Liarr-Pop
       - "8687:8687" #Liarr-Kpop
 
