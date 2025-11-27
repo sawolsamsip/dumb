@@ -1,0 +1,42 @@
+services:
+  DUMB:
+    container_name: DUMB
+    image: iampuid0/dumb:dev                                       ## Optionally, specify a specific version of DUMB w/ image: iampuid0/dumb:2.0.0
+    stop_grace_period: 30s                                            ## Adjust as need to allow for graceful shutdown of the container
+    shm_size: 128mb                                                   ## Increased for PostgreSQL
+    stdin_open: true                                                  ## docker run -i
+    tty: true                                                         ## docker run -t
+    volumes:
+      - /home/bosgame/docker/DUMB/config:/config                     ## Location of configuration files.
+      - /home/bosgame/docker/DUMB/log:/log                           ## Location for logs
+      - /home/bosgame/docker/DUMB/data:/data                         ## Location for all service data
+      - /home/bosgame/docker/DUMB/mnt/debrid:/mnt/debrid             ## Location for all symlinks and rclone mounts - change to /mnt/debrid:rshared if using decypharr 
+    environment:
+      - TZ=America/Los_Angeles
+      - PUID=1000
+      - PGID=1000
+    # network_mode: container:gluetun                                ## Example to attach to gluetun vpn container if realdebrid blocks IP address
+    ports:
+      - "3005:3005"                                                  ## DUMB Frontend
+      - "3000:3000"                                                  ## Riven Frontend
+      - "5050:5050"                                                  ## pgAdmin 4 Frontend
+      - "5000:5000"                                                  ## CLI Debrid Frontend      
+      - "8282:8282"                                                  ## Decypharr Frontend
+      - "32400:32400"                                                ## Plex Media Server (Optional)
+      - "8096:8096"                                                  ## Jellyfin/Emby Media Server (Optional)
+      - "9696:9696"                                                  ## Prowlarr                                                                                                                                                                                                                                                                                                                                                                                           
+      - "8989:8989"                                                  ## Sonarr (HD)                    
+      - "8990:8990"                                                  ## Sonarr (4K)
+      - "8991:8991"                                                  ## Sonarr (Anime)
+      - "7878:7878"                                                  ## Radarr (HD)
+      - "7879:7879"                                                  ## Radarr (4K)
+      - "7880:7880"                                                  ## Radarr (Anime)
+      - "6969:6969"                                                  ## XXX
+    devices:
+      - /dev/fuse:/dev/fuse:rwm
+      - /dev/dri:/dev/dri       
+    cap_add:
+      - SYS_ADMIN
+    security_opt:
+      - apparmor:unconfined
+      - no-new-privileges
